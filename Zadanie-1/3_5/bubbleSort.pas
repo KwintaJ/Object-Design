@@ -1,6 +1,6 @@
 program BubbleSort;
 var
-    arr: array[1..100] of integer;
+    arr: array[0..100] of integer;
     n, i, j, temp: integer;
 begin
     n := 0;
