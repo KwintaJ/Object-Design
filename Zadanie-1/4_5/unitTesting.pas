@@ -213,7 +213,7 @@ var
     O1, O2: TStringList;
     EOLN_STR: string;
     numbers: AnsiString;
-    timeoutCounter, i: integer;
+    i: integer;
 begin
     EOLN_STR := LineEnding;
     writeln('');
@@ -275,7 +275,6 @@ end;
 //===== MAIN =====
 var
     testsPassed: integer;
-    pathToFPC: string;
 begin
     //--- testing ---
     testsPassed := 0;
