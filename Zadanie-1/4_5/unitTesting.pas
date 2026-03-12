@@ -277,15 +277,6 @@ var
     testsPassed: integer;
     pathToFPC: string;
 begin
-    //--- compile programs ---
-    writeln('[KOMPILACJA PROGRAMOW]');
-    pathToFPC := GetFPCPath;
-    ExecuteProcess(pathToFPC, ['-osimpleGenerator.x', '../3_0/simpleGenerator.pas']);
-    ExecuteProcess(pathToFPC, ['-obubbleSort.x', '../3_5/bubbleSort.pas']);
-    ExecuteProcess(pathToFPC, ['-obetterGenerator.x', '../4_0/betterGenerator.pas']);
-    writeln('');
-    writeln('');
-
     //--- testing ---
     testsPassed := 0;
     testsPassed := testsPassed + Test1;
