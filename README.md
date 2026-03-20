@@ -17,4 +17,4 @@ Aplikację webowa na bazie frameworka Symfony, baza danych SQLite.
 ✗ | **3.5** Skrypty do testów endpointów via curl  
 ✗ | **4.0** Dwa dodatkowe kontrolery wraz z modelami  
 ✗ | **4.5** Widoki do wszystkich kontrolerów  
-✗ | **5.0** Panelu administracyjny  
+✗ | **5.0** Panel administracyjny  
