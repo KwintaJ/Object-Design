@@ -6,7 +6,7 @@ echo "--- 1. Dodanie produktu ---"
 
 RESPONSE=$(curl -s -X POST $URL \
      -H "Content-Type: application/json" \
-     -d '{"name": "Produkt A", "price": 49.99}')
+     -d '{"name": "Produkt A", "price": 49.99, "category": 1}')
 
 echo "$RESPONSE"
 
@@ -29,7 +29,7 @@ echo -e "\n"
 echo "--- 4. Aktualizacja produktu ---"
 curl -X PUT "$URL/$PRODUCT_ID" \
      -H "Content-Type: application/json" \
-     -d '{"name": "Produkt B", "price": 50.00}'
+     -d '{"name": "Produkt B", "price": 50.00, "category": 2}'
 echo -e "\n"
 
 echo "--- 5. Produkt ---"

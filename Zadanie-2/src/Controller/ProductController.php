@@ -13,7 +13,7 @@ class ProductController extends AbstractController
     #[Route('', methods: ['GET'])]
     public function index(EntityManagerInterface $em): JsonResponse {
         $products = $em->getRepository(Product::class)->findAll();
-        return $this->json(array_map(fn($p) => ['id' => $p->getId(), 'name' => $p->getName(), 'price' => $p->getPrice()], $products));
+        return $this->json(array_map(fn($p) => ['id' => $p->getId(), 'name' => $p->getName(), 'price' => $p->getPrice(), 'category' => $p->getCategory()], $products));
     }
 
     #[Route('/{id}', methods: ['GET'])]
@@ -28,14 +28,15 @@ class ProductController extends AbstractController
         return $this->json([
             'id' => $product->getId(),
             'name' => $product->getName(),
-            'price' => $product->getPrice()
+            'price' => $product->getPrice(),
+            'category' => $product->getCategory()
         ]);
     }
 
     #[Route('', methods: ['POST'])]
     public function create(Request $request, EntityManagerInterface $em): JsonResponse {
         $data = json_decode($request->getContent(), true);
-        $product = (new Product())->setName($data['name'])->setPrice($data['price']);
+        $product = (new Product())->setName($data['name'])->setPrice($data['price'])->setCategory($data['category']);
         $em->persist($product);
         $em->flush();
         return $this->json(['id' => $product->getId()], 201);
@@ -46,7 +47,7 @@ class ProductController extends AbstractController
         $product = $em->getRepository(Product::class)->find($id);
         if (!$product) return $this->json(['error' => 'Not found'], 404);
         $data = json_decode($request->getContent(), true);
-        $product->setName($data['name'] ?? $product->getName())->setPrice($data['price'] ?? $product->getPrice());
+        $product->setName($data['name'] ?? $product->getName())->setPrice($data['price'] ?? $product->getPrice())->setCategory($data['category'] ?? $product->getCategory());
         $em->flush();
         return $this->json(['message' => 'Updated']);
     }
