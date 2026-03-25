@@ -16,6 +16,22 @@ class ProductController extends AbstractController
         return $this->json(array_map(fn($p) => ['id' => $p->getId(), 'name' => $p->getName(), 'price' => $p->getPrice()], $products));
     }
 
+    #[Route('/{id}', methods: ['GET'])]
+    public function show(int $id, EntityManagerInterface $em): JsonResponse
+    {
+        $product = $em->getRepository(Product::class)->find($id);
+
+        if (!$product) {
+            return $this->json(['error' => 'Product not found'], 404);
+        }
+
+        return $this->json([
+            'id' => $product->getId(),
+            'name' => $product->getName(),
+            'price' => $product->getPrice()
+        ]);
+    }
+
     #[Route('', methods: ['POST'])]
     public function create(Request $request, EntityManagerInterface $em): JsonResponse {
         $data = json_decode($request->getContent(), true);
