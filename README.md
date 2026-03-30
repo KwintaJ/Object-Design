@@ -14,6 +14,6 @@ Aplikacja webowa na bazie frameworka Symfony, baza danych SQLite.
 
 ✓ | **3.0** Jeden model z kontrolerem z produktami, zgodnie z CRUD | [Commit](https://github.com/KwintaJ/Object-Design/tree/7bc6a7150ad227467985973ce121a2102e42d5c4/Zadanie-2/src)  
 ✓ | **3.5** Skrypty do testów endpointów via curl | [Commit](https://github.com/KwintaJ/Object-Design/commit/e22ff4418a60038a243bf4b1c3f03e9f52ec4b95)  
-✗ | **4.0** Dwa dodatkowe kontrolery wraz z modelami  
+✓ | **4.0** Dwa dodatkowe kontrolery wraz z modelami | [Commit](https://github.com/KwintaJ/Object-Design/tree/076d52f9b6a886ab34338c923abb87d83847b8ec/Zadanie-2/src)  
 ✗ | **4.5** Widoki do wszystkich kontrolerów  
 ✗ | **5.0** Panel administracyjny  
