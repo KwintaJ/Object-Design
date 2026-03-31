@@ -45,6 +45,14 @@ class CartController extends AbstractController
             return $this->json(['error' => "Product with ID $productId not found!"], 404);
         }
 
+        $existingItem = $em->getRepository(Cart::class)->findOneBy(['product' => $product]);
+
+        if ($existingItem) {
+            $existingItem->setQuantity($existingItem->getQuantity() + ($data['quantity'] ?? 1));
+            $em->flush();
+            return $this->json(['status' => 'Quantity updated']);
+        }
+
         $cartItem = new Cart();
         $cartItem->setProduct($product);
         $cartItem->setQuantity($data['quantity'] ?? 1);
