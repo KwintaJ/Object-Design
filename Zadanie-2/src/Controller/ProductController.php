@@ -11,8 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('', methods: ['GET'])]
-    public function index(EntityManagerInterface $em): JsonResponse {
-        $products = $em->getRepository(Product::class)->findAll();
+    public function index(Request $request, EntityManagerInterface $em): JsonResponse {
+        $categoryName = $request->query->get('category');
+        $repo = $em->getRepository(Product::class);
+
+        $products = $categoryName 
+            ? $repo->findBy(['category' => $categoryName]) 
+            : $repo->findAll();
+
         return $this->json(array_map(fn($p) => ['id' => $p->getId(), 'name' => $p->getName(), 'price' => $p->getPrice(), 'category' => $p->getCategory()], $products));
     }
 
