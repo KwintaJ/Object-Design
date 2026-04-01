@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8"><title>SuperOgród - Produkty</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">SuperOgród</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="categories.html">Kategorie</a>
+                <a class="nav-link" href="cart.html">Koszyk</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 id="page-title" class="mb-4">Wszystkie produkty</h2>
+        <div class="row" id="products-list"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8000/api';
+        const urlParams = new URLSearchParams(window.location.search);
+        const catName = urlParams.get('category');
+
+        async function loadProducts() {
+            const endpoint = catName ? `${API_URL}/products?category=${catName}` : `${API_URL}/products`;
+            const res = await fetch(endpoint);
+            const products = await res.json();
+            
+            if(catName) document.getElementById('page-title').innerText = catName;
+
+            document.getElementById('products-list').innerHTML = products.map(p => `
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <h5>${p.name}</h5>
+                            <p class="text-success fw-bold fs-5">${parseFloat(p.price).toFixed(2)} zł</p>
+                            <button onclick="addToCart(${p.id})" class="btn btn-primary w-100">Dodaj do koszyka</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function addToCart(productId) {
+            await fetch(`${API_URL}/cart`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ product_id: productId, quantity: 1 })
+            });
+        }
+
+        window.onload = loadProducts;
+    </script>
+</body>
+</html>
