@@ -15,5 +15,15 @@ Aplikacja webowa na bazie frameworka Symfony, baza danych SQLite.
 ✓ | **3.0** Jeden model z kontrolerem z produktami, zgodnie z CRUD | [Commit](https://github.com/KwintaJ/Object-Design/tree/7bc6a7150ad227467985973ce121a2102e42d5c4/Zadanie-2/src)  
 ✓ | **3.5** Skrypty do testów endpointów via curl | [Commit](https://github.com/KwintaJ/Object-Design/commit/e22ff4418a60038a243bf4b1c3f03e9f52ec4b95)  
 ✓ | **4.0** Dwa dodatkowe kontrolery wraz z modelami | [Commit](https://github.com/KwintaJ/Object-Design/tree/076d52f9b6a886ab34338c923abb87d83847b8ec/Zadanie-2/src)  
-✗ | **4.5** Widoki do wszystkich kontrolerów  
+✓ | **4.5** Widoki do wszystkich kontrolerów [Commit](https://github.com/KwintaJ/Object-Design/commit/9af6410020e4335873e98b0ab4e52be9b20572e2)  
 ✗ | **5.0** Panel administracyjny  
+  
+Zadanie 3 | Spring Boot (Kotlin)  
+---
+Prosty serwis do autoryzacji, który symuluje autoryzację użytkownika za pomocą przesłanej nazwy użytkownika oraz hasła. Aplikacja w języku Kotlin zawiera jeden kontroler. Oparta na frameworku Spring Boot.  
+
+✗ | **3.0** Jeden kontroler wraz z danymi wyświetlanymi z listy na endpoint’cie w formacie JSON  
+✗ | **3.5** Klasa do autoryzacji (mock) jako Singleton w formie eager  
+✗ | **4.0** Obsługa danych autoryzacji przekazywanych przez użytkownika  
+✗ | **4.5** Constructor injection singletonu do głównej klasy via @Autowired  
+✗ | **5.0** Obok wersji Eager do wyboru wersja Singletona w wersji lazy  
