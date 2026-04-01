@@ -8,7 +8,7 @@
 ✓ | **5.0** Skrypt w bashu do uruchamiania aplikacji w Pascalu via docker | [Docker image](https://hub.docker.com/repository/docker/jankwinta/object-design-01-5.0/general) | [Commit](https://github.com/KwintaJ/Object-Design/tree/4521628ae761165dc150bd6112d729f14dd1783f/Zadanie-1/5_0)  
 
 ## Zadanie 2 | PHP  
-Aplikacja webowa na bazie frameworka Symfony, baza danych SQLite.  
+Aplikacja webowa na bazie frameworka Symfony, baza danych SQLite. | [Screen recording](https://github.com/KwintaJ/Object-Design/blob/main/Zadanie-2/Screen-recording.mov)  
 
 ✓ | **3.0** Jeden model z kontrolerem z produktami, zgodnie z CRUD | [Commit](https://github.com/KwintaJ/Object-Design/tree/7bc6a7150ad227467985973ce121a2102e42d5c4/Zadanie-2/src)  
 ✓ | **3.5** Skrypty do testów endpointów via curl | [Commit](https://github.com/KwintaJ/Object-Design/commit/e22ff4418a60038a243bf4b1c3f03e9f52ec4b95)  
