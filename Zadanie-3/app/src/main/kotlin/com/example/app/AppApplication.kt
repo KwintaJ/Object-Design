@@ -5,10 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy
 import jakarta.annotation.PostConstruct
 
 @SpringBootApplication
-class AppApplication @Autowired constructor( @Qualifier("eagerAuthService") private val authService: AuthService ) {
+class AppApplication @Autowired constructor( 
+	@Lazy
+	@Qualifier("lazyAuthService") private val authService: AuthService
+) {
     @PostConstruct
     fun init() {
         println("Serwis wstrzyknięty do klasy głównej")
