@@ -1,13 +1,14 @@
 package com.example.app.controller
 
 import com.example.app.model.UserResponse
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import com.example.app.model.LoginRequest
+import com.example.app.service.AuthService
+import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/auth")
-class AuthController {
+class AuthController( @Qualifier("eagerAuthService") private val authService: AuthService ) {
     private val users = listOf(
         UserResponse(1, "admin1", "ADMIN"),
         UserResponse(2, "jankowalski", "USER"),
@@ -17,5 +18,16 @@ class AuthController {
     @GetMapping("/users")
     fun getUsers(): List<UserResponse> {
         return users
+    }
+
+    @PostMapping("/login")
+    fun login(@RequestBody request: LoginRequest): String {
+        val isAuthenticated = authService.authenticate(request.username, request.password)
+        
+        return if (isAuthenticated) {
+            "Zalogowano pomyślnie ${request.username}."
+        } else {
+            "Niepoprawny login lub hasło."
+        }
     }
 }
