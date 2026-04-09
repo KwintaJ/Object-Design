@@ -24,3 +24,13 @@ Prosty serwis do autoryzacji, który symuluje autoryzację użytkownika za pomoc
 ✓ | **4.0** Obsługa danych autoryzacji przekazywanych przez użytkownika | [Commit](https://github.com/KwintaJ/Object-Design/commit/175c5c7d438424843a68383fc8dae149652d3fb4)  
 ✓ | **4.5** Constructor injection singletonu do głównej klasy via @Autowired | [Commit](https://github.com/KwintaJ/Object-Design/commit/e33ced2f66953c9f6504793f6cbe058590292400)  
 ✓ | **5.0** Obok wersji Eager do wyboru wersja Singletona w wersji lazy | [Commit](https://github.com/KwintaJ/Object-Design/commit/43d8fdce5c11c702d8ac26a884b58ca6952d8a90)  
+
+## Zadanie 4 | Go
+
+Aplikacja w Go na frameworku echo. Jeden endpoint, jedna funkcję proxy, która pobiera dane o pogodzie z zewnętrznego API. Zapytania do endpointu można wysyłać w jako GET lub POST.  
+
+✗ | **3.0** Kontroler Pogody pozwala na pobieranie danych o pogodzie  
+✗ | **3.5** Model Pogoda wykorzystując gorm, a dane załadować z listy przy uruchomieniu  
+✗ | **4.0** Klasa proxy, która pobierze dane z serwisu zewnętrznego podczas zapytania do kontrolera  
+✗ | **4.5** Pobrane dane z zewnątrz zapisywane do bazy danych  
+✗ | **5.0** Rozszerzenie endpointa na więcej niż jedną lokalizację zwracając JSONa
