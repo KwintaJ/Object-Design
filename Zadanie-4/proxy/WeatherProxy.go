@@ -66,8 +66,8 @@ func processDay(data ApiResponse, startIdx int, city string) model.Weather {
 // get weather for today and tomorrow
 func GetData(queryCity string) ([]model.Weather, error) {
     url := "https://api.open-meteo.com/v1/forecast?latitude=50.0614&longitude=19.9366&hourly=temperature_2m,weather_code&forecast_days=3"
-
-    resp, err := http.Get(url)
+    client := &http.Client{Timeout: 10 * time.Second}
+    resp, err := client.Get(url)
     if err != nil {
         return nil, err
     }
