@@ -5,6 +5,7 @@ import (
     "net/http"
     "time"
     "math"
+    "errors"
     "gorm.io/gorm"
     "kwintaj.com/drizzle/model"
 )
@@ -73,8 +74,21 @@ func processDay(data ApiResponse, startIdx int, city string) model.Weather {
     }
 }
 
+func locate(city string) (string, error) {
+    switch {
+    case city == "Cracow":  return "https://api.open-meteo.com/v1/forecast?latitude=50.0614&longitude=19.9366&hourly=temperature_2m,weather_code&timezone=Europe%2FBerlin", nil
+    case city == "Warsaw":  return "https://api.open-meteo.com/v1/forecast?latitude=52.2298&longitude=21.0118&hourly=temperature_2m,weather_code&timezone=Europe%2FBerlin", nil
+    case city == "Zakopane":  return "https://api.open-meteo.com/v1/forecast?latitude=49.299&longitude=19.9489&hourly=temperature_2m,weather_code&timezone=Europe%2FBerlin", nil
+    default: return "", errors.New("Nieznana lokalizacja")
+    }
+}
+
 func (p *WeatherProxy) queryApi(queryCity string) ([]model.Weather, error) {
-    url := "https://api.open-meteo.com/v1/forecast?latitude=50.0614&longitude=19.9366&hourly=temperature_2m,weather_code&forecast_days=3"
+    url, err := locate(queryCity)
+    if err != nil {
+        return nil, err
+    }
+
     client := &http.Client{Timeout: 10 * time.Second}
     resp, err := client.Get(url)
     if err != nil {
@@ -103,7 +117,7 @@ func (p *WeatherProxy) updateDatabase(city string, data []model.Weather) {
 func (p *WeatherProxy) GetData(queryCity string) ([]model.Weather, error) {
     var cachedWeather []model.Weather
     threeHoursAgo := time.Now().Add(-3 * time.Hour)
-    today := time.Now().UTC().Truncate(24 * time.Hour)
+    today := time.Now().Truncate(24 * time.Hour)
 
     p.DB.Where("city = ? AND day >= ? AND updated_at > ?", queryCity, today, threeHoursAgo).Find(&cachedWeather)
     if len(cachedWeather) == 2 {

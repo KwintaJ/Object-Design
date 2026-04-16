@@ -22,6 +22,42 @@
             color: #1B364B;
         }
 
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: rgba(27, 54, 75, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-btn:hover {
+            color: #FFFFFF;
+        }
+
+        .nav-btn.active {
+            color: #FFFFFF;
+            border-bottom: 2px solid #780000;
+        }
+
         .main-title {
             margin-bottom: 40px;
             font-size: 2.5rem;
@@ -98,6 +134,12 @@
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <button class="nav-btn" onclick="updateWeather('Warsaw', this)">Warsaw</button>
+        <button class="nav-btn active" onclick="updateWeather('Cracow', this)">Cracow</button>
+        <button class="nav-btn" onclick="updateWeather('Zakopane', this)">Zakopane</button>
+    </nav>
+
     <h1 class="main-title">
         <span class="title-prefix">Weather in: </span><span class="title-city" id="location-city">...</span>
     </h1>
@@ -123,9 +165,16 @@
     </div>
 
     <script>
-        const API_URL = 'http://localhost:8080/in?city=Kraków';
+        function updateWeather(cityName, element) {
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            
+            fetchWeather(cityName);
+        }
 
-        async function fetchWeather() {
+        async function fetchWeather(city) {
+            const API_URL = 'http://localhost:8080/in?city=' + city;
+            
             try {
                 const response = await fetch(API_URL);
                 if (!response.ok) throw new Error('Błąd sieci');
@@ -155,7 +204,7 @@
             }
         }
 
-        window.onload = fetchWeather;
+        window.onload = fetchWeather('Cracow');
     </script>
 </body>
 </html>
