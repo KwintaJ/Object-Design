@@ -33,4 +33,4 @@ Aplikacja w Go na frameworku echo. Jeden endpoint, jedna funkcję proxy, która 
 ✓ | **3.5** Model Pogoda wykorzystując gorm, a dane załadować z listy przy uruchomieniu | [Commit](https://github.com/KwintaJ/Object-Design/commit/d5b5a395c8872eaf5993ab2b2b22d47632c387f3)  
 ✓ | **4.0** Klasa proxy, która pobierze dane z serwisu zewnętrznego podczas zapytania do kontrolera | [Commit](https://github.com/KwintaJ/Object-Design/commit/7771712f9481fb82def3b4a2d186b0e6536bc207)  
 ✓ | **4.5** Pobrane dane z zewnątrz zapisywane do bazy danych | [Commit](https://github.com/KwintaJ/Object-Design/commit/969c31421f028c445de4a26a63e9494916e5f5ce)  
-✗ | **5.0** Rozszerzenie endpointa na więcej niż jedną lokalizację zwracając JSONa
+✓ | **5.0** Rozszerzenie endpointa na więcej niż jedną lokalizację zwracając JSONa | [Commit](https://github.com/KwintaJ/Object-Design/commit/b95f29cfe6653629cc87efc0b2c023c1d26d7bdf)
