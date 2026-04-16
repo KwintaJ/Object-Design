@@ -6,5 +6,6 @@ type Weather struct {
     gorm.Model
     City string
     Conditions string
-    Temperature int
+    TemperatureMax int
+    TemperatureMin int
 }
