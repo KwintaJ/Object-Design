@@ -7,9 +7,9 @@ import (
 
 type Weather struct {
     gorm.Model
-    City            string
-    Conditions      string
-    TemperatureMax  int
-    TemperatureMin  int
-    Day             time.Time
+    City            string      `json:"city"`
+    Conditions      string      `json:"conditions"`
+    TemperatureMax  int         `json:"temperature_max"`
+    TemperatureMin  int         `json:"temperature_min"`
+    Day             time.Time   `json:"day"`
 }

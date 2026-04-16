@@ -5,8 +5,18 @@ import (
     "net/http"
     "time"
     "math"
+    "gorm.io/gorm"
     "kwintaj.com/drizzle/model"
 )
+
+// db connection
+type WeatherProxy struct {
+    DB *gorm.DB
+}
+
+func NewWeatherProxy(db *gorm.DB) *WeatherProxy {
+    return &WeatherProxy{DB: db}
+}
 
 type ApiResponse struct {
     Hourly struct {
@@ -63,8 +73,7 @@ func processDay(data ApiResponse, startIdx int, city string) model.Weather {
     }
 }
 
-// get weather for today and tomorrow
-func GetData(queryCity string) ([]model.Weather, error) {
+func (p *WeatherProxy) queryApi(queryCity string) ([]model.Weather, error) {
     url := "https://api.open-meteo.com/v1/forecast?latitude=50.0614&longitude=19.9366&hourly=temperature_2m,weather_code&forecast_days=3"
     client := &http.Client{Timeout: 10 * time.Second}
     resp, err := client.Get(url)
@@ -83,3 +92,32 @@ func GetData(queryCity string) ([]model.Weather, error) {
 
     return []model.Weather{today, tomorrow}, nil
 }
+
+func (p *WeatherProxy) updateDatabase(city string, data []model.Weather) {
+    p.DB.Where("city = ?", city).Delete(&model.Weather{})
+    p.DB.Create(&data)
+}
+
+// get weather for today and tomorrow
+// cache-aside
+func (p *WeatherProxy) GetData(queryCity string) ([]model.Weather, error) {
+    var cachedWeather []model.Weather
+    threeHoursAgo := time.Now().Add(-3 * time.Hour)
+    today := time.Now().UTC().Truncate(24 * time.Hour)
+
+    p.DB.Where("city = ? AND day >= ? AND updated_at > ?", queryCity, today, threeHoursAgo).Find(&cachedWeather)
+    if len(cachedWeather) == 2 {
+        return cachedWeather, nil
+    }
+
+    freshData, err := p.queryApi(queryCity)
+    if err != nil {
+        return nil, err
+    }
+
+    p.updateDatabase(queryCity, freshData)
+
+    return freshData, nil
+}
+
+
