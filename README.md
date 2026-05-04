@@ -39,8 +39,8 @@ Aplikacja w Go na frameworku echo. Jeden endpoint, jedna funkcję proxy, która 
 
 Aplikacja React  
 
-✗ | **3.0** Komponenty Produkty oraz Płatności; komponent Produkty pobiera listę produktów z aplikacji serwerowej, komponent Płatności wysyła dane płatności do aplikacji serwerowej  
+✓ | **3.0** Komponenty Produkty oraz Płatności; komponent Produkty pobiera listę produktów z aplikacji serwerowej, komponent Płatności wysyła dane płatności do aplikacji serwerowej | [Commit](https://github.com/KwintaJ/Object-Design/commit/79d5ea44fc834c83c80def0cce727846f86e8f0f)  
 ✗ | **3.5** Komponent Koszyk wraz z osobnym widokiem; aplikacja umożliwia przechodzenie pomiędzy widokami przy użyciu routingu  
-✗ | **4.0** Dane pomiędzy komponentami, takimi jak Produkty, Koszyk i Płatności przekazywane z wykorzystaniem React hooks  
-✗ | **4.5** Uruchomienie aplikacji klienckiej oraz serwerowej w kontenerach Docker za pomocą docker-compose  
-✗ | **5.0** Axios + CORS  
+✓ | **4.0** Dane pomiędzy komponentami, takimi jak Produkty, Koszyk i Płatności przekazywane z wykorzystaniem React hooks | [Commit](https://github.com/KwintaJ/Object-Design/commit/53b14cb886d7d8764c8960b02744425c6d0e25b9)  
+✓ | **4.5** Uruchomienie aplikacji klienckiej oraz serwerowej w kontenerach Docker za pomocą docker-compose | [Commit](https://github.com/KwintaJ/Object-Design/commit/5c0681569eb960bf011e8beb2643887db6236cab)  
+✓ | **5.0** Axios + CORS | [Commit](https://github.com/KwintaJ/Object-Design/commit/be73b72aa405a12f8c6f25119e5e73847e9b78d0)  
