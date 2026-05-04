@@ -25,7 +25,7 @@ Prosty serwis do autoryzacji, który symuluje autoryzację użytkownika za pomoc
 ✓ | **4.5** Constructor injection singletonu do głównej klasy via @Autowired | [Commit](https://github.com/KwintaJ/Object-Design/commit/e33ced2f66953c9f6504793f6cbe058590292400)  
 ✓ | **5.0** Obok wersji Eager do wyboru wersja Singletona w wersji lazy | [Commit](https://github.com/KwintaJ/Object-Design/commit/43d8fdce5c11c702d8ac26a884b58ca6952d8a90)  
 
-## Zadanie 4 | Go
+## Zadanie 4 | Go  
 
 Aplikacja w Go na frameworku echo. Jeden endpoint, jedna funkcję proxy, która pobiera dane o pogodzie z zewnętrznego API. Zapytania do endpointu można wysyłać w jako GET lub POST.  
 
@@ -34,3 +34,13 @@ Aplikacja w Go na frameworku echo. Jeden endpoint, jedna funkcję proxy, która 
 ✓ | **4.0** Klasa proxy, która pobierze dane z serwisu zewnętrznego podczas zapytania do kontrolera | [Commit](https://github.com/KwintaJ/Object-Design/commit/7771712f9481fb82def3b4a2d186b0e6536bc207)  
 ✓ | **4.5** Pobrane dane z zewnątrz zapisywane do bazy danych | [Commit](https://github.com/KwintaJ/Object-Design/commit/969c31421f028c445de4a26a63e9494916e5f5ce)  
 ✓ | **5.0** Rozszerzenie endpointa na więcej niż jedną lokalizację zwracając JSONa | [Commit](https://github.com/KwintaJ/Object-Design/commit/b95f29cfe6653629cc87efc0b2c023c1d26d7bdf)
+
+## Zadanie 5 | Wzorce behawioralne  
+
+Aplikacja React  
+
+✗ | **3.0** Komponenty Produkty oraz Płatności; komponent Produkty pobiera listę produktów z aplikacji serwerowej, komponent Płatności wysyła dane płatności do aplikacji serwerowej  
+✗ | **3.5** Komponent Koszyk wraz z osobnym widokiem; aplikacja umożliwia przechodzenie pomiędzy widokami przy użyciu routingu  
+✗ | **4.0** Dane pomiędzy komponentami, takimi jak Produkty, Koszyk i Płatności przekazywane z wykorzystaniem React hooks  
+✗ | **4.5** Uruchomienie aplikacji klienckiej oraz serwerowej w kontenerach Docker za pomocą docker-compose  
+✗ | **5.0** Axios + CORS  
