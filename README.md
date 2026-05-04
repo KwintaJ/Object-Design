@@ -27,7 +27,7 @@ Prosty serwis do autoryzacji, który symuluje autoryzację użytkownika za pomoc
 
 ## Zadanie 4 | Go  
 
-Aplikacja w Go na frameworku echo. Jeden endpoint, jedna funkcję proxy, która pobiera dane o pogodzie z zewnętrznego API. Zapytania do endpointu można wysyłać w jako GET lub POST.  
+Aplikacja w Go na frameworku echo. Jeden endpoint, jedna funkcję proxy, która pobiera dane o pogodzie z zewnętrznego API. Zapytania do endpointu można wysyłać w jako GET lub POST. | [Screen recording](https://github.com/KwintaJ/Object-Design/blob/main/Zadanie-2/Screen-recording.mov)  
 
 ✓ | **3.0** Kontroler Pogody pozwala na pobieranie danych o pogodzie | [Commit](https://github.com/KwintaJ/Object-Design/commit/356c3fc516a6de0563fe6d77f5479f2b901483ef)  
 ✓ | **3.5** Model Pogoda wykorzystując gorm, a dane załadować z listy przy uruchomieniu | [Commit](https://github.com/KwintaJ/Object-Design/commit/d5b5a395c8872eaf5993ab2b2b22d47632c387f3)  
