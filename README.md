@@ -44,3 +44,23 @@ Aplikacja React | [Screen recording](https://github.com/KwintaJ/Object-Design/bl
 ✓ | **4.0** Dane pomiędzy komponentami, takimi jak Produkty, Koszyk i Płatności przekazywane z wykorzystaniem React hooks | [Commit](https://github.com/KwintaJ/Object-Design/commit/53b14cb886d7d8764c8960b02744425c6d0e25b9)  
 ✓ | **4.5** Uruchomienie aplikacji klienckiej oraz serwerowej w kontenerach Docker za pomocą docker-compose | [Commit](https://github.com/KwintaJ/Object-Design/commit/5c0681569eb960bf011e8beb2643887db6236cab)  
 ✓ | **5.0** Axios + CORS | [Commit](https://github.com/KwintaJ/Object-Design/commit/be73b72aa405a12f8c6f25119e5e73847e9b78d0)  
+
+## Zadanie 6 | Code smells  
+
+Sprawdzanie kodów projektów Kotlin, Go, JS.  
+
+✗ | **3.0** Husky + lint-staged skonfigurowane uruchamianie lintowania przed commitem  
+✗ | **3.5** Wyeliminowane wszystkie bugi w Sonarze (kod aplikacji klienckiej)  
+✗ | **4.0** Przeskanowanie i naprawić projektu open source narzędziem CodeQL  
+✗ | **4.5** Wyeliminowane wszystkie code smells w Sonarze (kotlin, go, js)  
+✗ | **5.0** Skonfigurowane Github Actions z linterem oraz CodeQL  
+
+## Zadanie 7 | Vapor  
+
+Prosta aplikacja w Vaporze, wykorzystująca Leaf jako silnik szablonów i Fluent jako ORM. Trzy modele oraz CRUD dla każdego z nich, minimum jedna relacja. CRUD ma odzwierciedlenie w szablonach.  
+
+✗ | **3.0** Kontroler wraz z modelem Produktów zgodny z CRUD w ORM Fluent  
+✗ | **3.5** Szablony w Leaf  
+✗ | **4.0** Drugi model oraz kontroler Kategorii wraz z relacją  
+✗ | **4.5** Redis do przechowywania danych  
+✗ | **5.0** Aplikacja na heroku  
