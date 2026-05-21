@@ -69,16 +69,16 @@ export const ShopProvider = ({ children }) => {
     const safeId = getSafeCartId();
     if (!safeId) return;
 
-    const safeItemId = validateItemId(itemID);
+    validateItemId(itemID);
 
     try {
-      const res = await api.put(`/cart/${safeId}/${safeItemId}`, { 
+      const res = await api.put(`/cart/${safeId}/${itemID}`, { 
         quantity: parseInt(newQty) 
       });
 
       if (res.status === 200) {
         setItems(prevItems => 
-          prevItems.map(item => item.ID === safeItemId ? { ...item, quantity: newQty } : item)
+          prevItems.map(item => item.ID === itemID ? { ...item, quantity: newQty } : item)
         );
       }
       fetchCart(safeId);
@@ -89,10 +89,10 @@ export const ShopProvider = ({ children }) => {
     const safeId = getSafeCartId();
     if (!safeId) return;
 
-    const safeItemId = validateItemId(itemID);
+    validateItemId(itemID);
 
     try {
-      await api.delete(`/cart/${safeId}/${safeItemId}`);
+      await api.delete(`/cart/${safeId}/${itemID}`);
       await fetchCart(safeId);
     } catch (err) { console.error("Błąd usuwania z koszyka", err); }
   };
