@@ -10,7 +10,7 @@ export const ShopProvider = ({ children }) => {
   const [cartID, setCartID] = useState(null);
   const [paymentStatus, setPaymentStatus] = useState('idle');
 
-  const getSafeCartId = (id) => {
+  const getSafeId = (id) => {
     const activeId = id || cartID;
     if (!activeId) return null;
     
@@ -105,7 +105,15 @@ export const ShopProvider = ({ children }) => {
       
       setTimeout(async () => {
         try {
-          const finalizeRes = await api.put(`/payments/${payment.ID}/completed`);
+          const parsedPaymentId = parseInt(payment?.ID, 10);
+        
+          if (!parsedPaymentId || isNaN(parsedPaymentId)) {
+            console.error("Nieprawidłowe ID płatności odebrane z serwera");
+            setPaymentStatus('error');
+            return;
+          }
+
+          const finalizeRes = await api.put(`/payments/${parsedPaymentId}/completed`);
 
           if (finalizeRes.status === 200) {
             setPaymentStatus('success');
