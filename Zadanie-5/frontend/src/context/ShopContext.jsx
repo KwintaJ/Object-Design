@@ -14,16 +14,16 @@ export const ShopProvider = ({ children }) => {
     const activeId = id || cartID;
     if (!activeId) return null;
     
-    const parsedId = parseInt(activeId, 10);
-    return isNaN(parsedId) ? null : parsedId;
+    const parsedId = Number.parseInt(activeId, 10);
+    return Number.isNaN(parsedId) ? null : parsedId;
   };
 
   const getSafeItemId = (itemID) => {
     const id = itemID;
     if (!id) return null;
     
-    const parsedId = parseInt(id, 10);
-    return isNaN(parsedId) ? null : parsedId;
+    const parsedId = Number.parseInt(id, 10);
+    return Number.isNaN(parsedId) ? null : parsedId;
   };
 
   const fetchCart = async (id) => {
@@ -35,7 +35,7 @@ export const ShopProvider = ({ children }) => {
       setItems(res.data.items || []);
       setTotal(res.data.total || 0);
     } catch (err) {
-      if (err.response && err.response.status === 404) {
+      if (err?.response.status === 404) {
         newCart(); 
       } else {
         console.error("Błąd pobierania koszyka", err);
@@ -71,11 +71,11 @@ export const ShopProvider = ({ children }) => {
     const safeId = getSafeCartId();
     if (!safeId) return;
 
-    safeItemId = getSafeItemId(itemID);
+    const safeItemId = getSafeItemId(itemID);
 
     try {
       const res = await api.put(`/cart/${safeId}/${safeItemId}`, { 
-        quantity: parseInt(newQty) 
+        quantity: Number.parseInt(newQty) 
       });
 
       if (res.status === 200) {
@@ -91,7 +91,7 @@ export const ShopProvider = ({ children }) => {
     const safeId = getSafeCartId();
     if (!safeId) return;
 
-    safeItemId = getSafeItemId(itemID);
+    const safeItemId = getSafeItemId(itemID);
 
     try {
       await api.delete(`/cart/${safeId}/${safeItemId}`);
@@ -117,9 +117,9 @@ export const ShopProvider = ({ children }) => {
       
       setTimeout(async () => {
         try {
-          const parsedPaymentId = parseInt(payment?.ID, 10);
+          const parsedPaymentId = Number.parseInt(payment?.ID, 10);
         
-          if (!parsedPaymentId || isNaN(parsedPaymentId)) {
+          if (!parsedPaymentId || Number.isNaN(parsedPaymentId)) {
             console.error("Nieprawidłowe ID płatności odebrane z serwera");
             setPaymentStatus('error');
             return;
@@ -133,10 +133,14 @@ export const ShopProvider = ({ children }) => {
           } else {
             setPaymentStatus('error');
           }
-        } catch (err) { setPaymentStatus('error'); }
+        } catch (err) { 
+            setPaymentStatus('error');
+          }
       }, 2000);
       
-    } catch (err) { setPaymentStatus('error'); }
+    } catch (err) {
+        setPaymentStatus('error');
+      }
   };
 
   const newCart = async () => {

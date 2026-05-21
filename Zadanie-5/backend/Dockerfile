@@ -11,7 +11,7 @@ ENV CGO_ENABLED=1
 RUN go build -o server .
 
 # run
-FROM alpine:latest
+FROM alpine:3.22.4
 RUN apk add --no-cache libc6-compat ca-certificates
 WORKDIR /app
 COPY --from=builder /app/server .
