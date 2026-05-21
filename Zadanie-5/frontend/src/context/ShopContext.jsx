@@ -1,5 +1,6 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useMemo } from 'react';
 import api from '../api/axios';
+import PropTypes from 'prop-types';
 
 const ShopContext = createContext();
 
@@ -161,20 +162,26 @@ export const ShopProvider = ({ children }) => {
     newCart();
   }, []);
 
+  const contextValue = useMemo(() => ({
+    items,
+    total,
+    products,
+    addToCart,
+    updateQty,
+    removeFromCart,
+    handlePay,
+    paymentStatus
+  }), [items, total, products, addToCart, updateQty, removeFromCart, handlePay, paymentStatus]);
+
   return (
-    <ShopContext.Provider value={{ 
-      items, 
-      total, 
-      products,
-      addToCart,
-      updateQty, 
-      removeFromCart,
-      handlePay,
-      paymentStatus
-    }}>
+    <ShopContext.Provider value={contextValue}>
       {children}
     </ShopContext.Provider>
   );
+};
+
+ShopProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export const useShop = () => useContext(ShopContext);
