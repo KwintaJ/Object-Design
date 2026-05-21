@@ -50,10 +50,15 @@ Aplikacja React | [Screen recording](https://github.com/KwintaJ/Object-Design/bl
 Sprawdzanie kodów projektów Kotlin (Zadanie 3), Go+JS (Zadanie 5).  
 
 ✓ | **3.0** Husky + lint-staged skonfigurowane uruchamianie lintowania przed commitem (Zadanie 5) | [Commit](https://github.com/KwintaJ/Object-Design/commit/8b193f94b9e49da3bd5ec9d6fde288271bcd3036)  
-✓ | **3.5** Wyeliminowane wszystkie bugi w Sonarze (kod aplikacji klienckiej) | [Commit 1](https://github.com/KwintaJ/Object-Design/commit/81fc7d9ba072dc500e7e9319f4d74a5f00a1ac1d) | [Commit 2](https://github.com/KwintaJ/Object-Design/commit/48b7647dbb28e735f20215a650a752650cf1a27c) | [Commit 3](https://github.com/KwintaJ/Object-Design/commit/ef647c413ea50ebb14f1a6cd1e0800871252f756) | [Commit 4](https://github.com/KwintaJ/Object-Design/commit/e837c7dde1067f1d7e06ba79918f0124a4afb3e5)  
-✗ | **4.0** Przeskanowanie i naprawienie projektu open source narzędziem CodeQL  
-✗ | **4.5** Wyeliminowane wszystkich code smells w Sonarze (kotlin, go, js)  
-✗ | **5.0** Skonfigurowane Github Actions z linterem oraz CodeQL  
+✓ | **3.5** Wyeliminowane wszystkie bugi w Sonarze (kod aplikacji klienckiej) | [Commit 1](https://github.com/KwintaJ/Object-Design/commit/81fc7d9ba072dc500e7e9319f4d74a5f00a1ac1d) | [Commit 2](https://github.com/KwintaJ/Object-Design/commit/48b7647dbb28e735f20215a650a752650cf1a27c) | [Commit 3](https://github.com/KwintaJ/Object-Design/commit/423cff417f2f5db6621ae6d2b650757c59228348) | [Commit 4](https://github.com/KwintaJ/Object-Design/commit/e837c7dde1067f1d7e06ba79918f0124a4afb3e5)  
+✓ | **4.0** Przeskanowanie i naprawienie [projektu open source](https://github.com/KwintaJ/udara885-todo-app-fork) narzędziem CodeQL | [Commit](https://github.com/KwintaJ/udara885-todo-app-fork/commit/7083e6bd1e67cbc6a6c093c8e739b11107d59a45)  
+✓ | **4.5** Wyeliminowane wszystkich code smells w Sonarze (kotlin, go, js) | [Commit 1](https://github.com/KwintaJ/Object-Design/commit/d63298118aa607bbf1c11f7d65f59c3c0b1011c3) | [Commit 2](https://github.com/KwintaJ/Object-Design/commit/448aee629590fb6c4eda14e14914068f89daa54f)  
+✓ | **5.0** Skonfigurowane Github Actions z linterem oraz CodeQL | [Commit 1](https://github.com/KwintaJ/udara885-todo-app-fork/commit/8461a96a335f9e4e2f6114f17d15fe03dd358832) | [Commit 2](https://github.com/KwintaJ/udara885-todo-app-fork/commit/5b22b47af3345b922e68d5d61bef2225bb5c75fa)  
+
+Badge Sonara:  
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=KwintaJ_Object-Design&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=KwintaJ_Object-Design)  
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=KwintaJ_Object-Design&metric=bugs)](https://sonarcloud.io/summary/new_code?id=KwintaJ_Object-Design)  
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=KwintaJ_Object-Design&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=KwintaJ_Object-Design)  
 
 ## Zadanie 7 | Vapor  
 
