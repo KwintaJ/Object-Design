@@ -7,14 +7,23 @@ export const ShopProvider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [products, setProducts] = useState([]);
-  const [cartID, setCartID] = useState(localStorage.getItem('activeCartID'));
+  const [cartID, setCartID] = useState(null);
   const [paymentStatus, setPaymentStatus] = useState('idle');
 
+  const getSafeCartId = (id) => {
+    const activeId = id || cartID;
+    if (!activeId) return null;
+    
+    const parsedId = parseInt(activeId, 10);
+    return isNaN(parsedId) ? null : parsedId;
+  };
+
   const fetchCart = async (id) => {
-    const cid = id || cartID
-    if (!cid) return;
+    const safeId = getSafeCartId(id);
+    if (!safeId) return;
+
     try {
-      const res = await api.get(`/cart/${cid}`);
+      const res = await api.get(`/cart/${safeId}`);
       setItems(res.data.items || []);
       setTotal(res.data.total || 0);
     } catch (err) {
@@ -34,6 +43,9 @@ export const ShopProvider = ({ children }) => {
   };
 
   const addToCart = async (product) => {
+    const safeId = getSafeCartId();
+    if (!safeId) return;
+
     try {
       const itemDetails = {
         product_id: product.ID,
@@ -42,14 +54,17 @@ export const ShopProvider = ({ children }) => {
         quantity: 1
       };
 
-      await api.post(`/cart/${cartID}`, itemDetails);
-      fetchCart(cartID);
+      await api.post(`/cart/${safeId}`, itemDetails);
+      fetchCart(safeId);
     } catch (err) { console.error("Błąd dodawania do koszyka", err); }
   };
 
   const updateQty = async (itemID, newQty) => {
+    const safeId = getSafeCartId();
+    if (!safeId) return;
+
     try {
-      const res = await api.put(`/cart/${cartID}/${itemID}`, { 
+      const res = await api.put(`/cart/${safeId}/${itemID}`, { 
         quantity: parseInt(newQty) 
       });
 
@@ -58,25 +73,31 @@ export const ShopProvider = ({ children }) => {
           prevItems.map(item => item.ID === itemID ? { ...item, quantity: newQty } : item)
         );
       }
-      fetchCart(cartID);
+      fetchCart(safeId);
     } catch (err) { console.error("Błąd aktualizacji ilości", err); }
   };
 
   const removeFromCart = async (itemID) => {
+    const safeId = getSafeCartId();
+    if (!safeId) return;
+
     try {
-      await api.delete(`/cart/${cartID}/${itemID}`);
-      await fetchCart();
+      await api.delete(`/cart/${safeId}/${itemID}`);
+      await fetchCart(safeId);
     } catch (err) { console.error("Błąd usuwania z koszyka", err); }
   };
 
   const handlePay = async (method) => {
+    const safeId = getSafeCartId();
+    if (!safeId) return;
+
     setPaymentStatus('processing');
     try {
       const paymentDetails = {
         amount: total,
         method: method,
         status: "",
-        cart_id: parseInt(cartID)
+        cart_id: safeId
       };
 
       const res = await api.post(`/payments`, paymentDetails);
@@ -100,23 +121,20 @@ export const ShopProvider = ({ children }) => {
 
   const newCart = async () => {
     try {
-      const res = await api.post('/cart')
+      const res = await api.post('/cart');
       const data = res.data;
 
       setCartID(data.ID);
-      localStorage.setItem('activeCartID', data.ID);
       setItems([]);
       setTotal(0);
+      
+      fetchCart(data.ID);
     } catch(err) { console.error("Błąd inicjalizacji koszyka", err); }
-  } 
+  }; 
 
   useEffect(() => {
     fetchProducts();
-
-    if (!cartID) {
-      newCart();
-    }
-    fetchCart(cartID);
+    newCart();
   }, []);
 
   return (
