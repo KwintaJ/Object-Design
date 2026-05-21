@@ -18,10 +18,12 @@ export const ShopProvider = ({ children }) => {
     return isNaN(parsedId) ? null : parsedId;
   };
 
-  const validateItemId = (itemID) => {
-    if (itemID === undefined || itemID === null || isNaN(Number(itemID))) {
-      throw new Error("Nieprawidłowy identyfikator produktu");
-    }
+  const getSafeItemId = (itemID) => {
+    const id = itemID;
+    if (!id) return null;
+    
+    const parsedId = parseInt(id, 10);
+    return isNaN(parsedId) ? null : parsedId;
   };
 
   const fetchCart = async (id) => {
@@ -69,16 +71,16 @@ export const ShopProvider = ({ children }) => {
     const safeId = getSafeCartId();
     if (!safeId) return;
 
-    validateItemId(itemID);
+    safeItemId = getSafeItemId(itemID);
 
     try {
-      const res = await api.put(`/cart/${safeId}/${itemID}`, { 
+      const res = await api.put(`/cart/${safeId}/${safeItemId}`, { 
         quantity: parseInt(newQty) 
       });
 
       if (res.status === 200) {
         setItems(prevItems => 
-          prevItems.map(item => item.ID === itemID ? { ...item, quantity: newQty } : item)
+          prevItems.map(item => item.ID === safeItemId ? { ...item, quantity: newQty } : item)
         );
       }
       fetchCart(safeId);
@@ -89,10 +91,10 @@ export const ShopProvider = ({ children }) => {
     const safeId = getSafeCartId();
     if (!safeId) return;
 
-    validateItemId(itemID);
+    safeItemId = getSafeItemId(itemID);
 
     try {
-      await api.delete(`/cart/${safeId}/${itemID}`);
+      await api.delete(`/cart/${safeId}/${safeItemId}`);
       await fetchCart(safeId);
     } catch (err) { console.error("Błąd usuwania z koszyka", err); }
   };
