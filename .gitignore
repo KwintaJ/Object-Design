@@ -6,3 +6,4 @@
 *.out
 seed*
 *.db
+node_modules
