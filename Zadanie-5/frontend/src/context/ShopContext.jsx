@@ -10,7 +10,7 @@ export const ShopProvider = ({ children }) => {
   const [cartID, setCartID] = useState(null);
   const [paymentStatus, setPaymentStatus] = useState('idle');
 
-  const getSafeId = (id) => {
+  const getSafeCartId = (id) => {
     const activeId = id || cartID;
     if (!activeId) return null;
     
