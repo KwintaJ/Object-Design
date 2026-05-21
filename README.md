@@ -47,12 +47,12 @@ Aplikacja React | [Screen recording](https://github.com/KwintaJ/Object-Design/bl
 
 ## Zadanie 6 | Code smells  
 
-Sprawdzanie kodów projektów Kotlin, Go, JS.  
+Sprawdzanie kodów projektów Kotlin (Zadanie 3), Go+JS (Zadanie 5).  
 
-✗ | **3.0** Husky + lint-staged skonfigurowane uruchamianie lintowania przed commitem  
-✗ | **3.5** Wyeliminowane wszystkie bugi w Sonarze (kod aplikacji klienckiej)  
-✗ | **4.0** Przeskanowanie i naprawić projektu open source narzędziem CodeQL  
-✗ | **4.5** Wyeliminowane wszystkie code smells w Sonarze (kotlin, go, js)  
+✓ | **3.0** Husky + lint-staged skonfigurowane uruchamianie lintowania przed commitem (Zadanie 5) | [Commit](https://github.com/KwintaJ/Object-Design/commit/8b193f94b9e49da3bd5ec9d6fde288271bcd3036)  
+✓ | **3.5** Wyeliminowane wszystkie bugi w Sonarze (kod aplikacji klienckiej) | [Commit 1](https://github.com/KwintaJ/Object-Design/commit/81fc7d9ba072dc500e7e9319f4d74a5f00a1ac1d) | [Commit 2](https://github.com/KwintaJ/Object-Design/commit/48b7647dbb28e735f20215a650a752650cf1a27c) | [Commit 3](https://github.com/KwintaJ/Object-Design/commit/ef647c413ea50ebb14f1a6cd1e0800871252f756) | [Commit 4](https://github.com/KwintaJ/Object-Design/commit/e837c7dde1067f1d7e06ba79918f0124a4afb3e5)  
+✗ | **4.0** Przeskanowanie i naprawienie projektu open source narzędziem CodeQL  
+✗ | **4.5** Wyeliminowane wszystkich code smells w Sonarze (kotlin, go, js)  
 ✗ | **5.0** Skonfigurowane Github Actions z linterem oraz CodeQL  
 
 ## Zadanie 7 | Vapor  
