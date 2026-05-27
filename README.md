@@ -64,9 +64,9 @@ Badge Sonara:
 
 Prosta aplikacja w Vaporze, wykorzystująca Leaf jako silnik szablonów i Fluent jako ORM. Trzy modele oraz CRUD dla każdego z nich, minimum jedna relacja. CRUD ma odzwierciedlenie w szablonach.  
 
-✗ | **3.0** Kontroler wraz z modelem Produktów zgodny z CRUD w ORM Fluent  
-✗ | **3.5** Szablony w Leaf  
-✗ | **4.0** Drugi model oraz kontroler Kategorii wraz z relacją  
+✓ | **3.0** Kontroler wraz z modelem Produktów zgodny z CRUD w ORM Fluent | [Commit](https://github.com/KwintaJ/Object-Design/commit/5eb0ea6c6c0f033575a2a0cce71d83a74c95bcd5)  
+✓ | **3.5** Szablony w Leaf | [Commit](https://github.com/KwintaJ/Object-Design/commit/2d41a8e4f0a2bd55527b43303436cebca922509b)  
+✓ | **4.0** Drugi model oraz kontroler Kategorii wraz z relacją | [Commit](https://github.com/KwintaJ/Object-Design/commit/9d47977de64116cd0e6b6e0646dd03b250fe472f)  
 ✗ | **4.5** Redis do przechowywania danych  
 ✗ | **5.0** Aplikacja na heroku  
 
