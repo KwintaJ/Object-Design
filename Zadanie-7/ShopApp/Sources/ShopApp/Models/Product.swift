@@ -1,7 +1,7 @@
 import Fluent
 import Vapor
 
-final class Product: Model, Content, @unchecked Sendable {
+final class Product: Model, Content, Codable, @unchecked Sendable {
     static let schema = "products"
 
     @ID(key: .id)
@@ -18,7 +18,7 @@ final class Product: Model, Content, @unchecked Sendable {
 
     init() { }
 
-    init(id: UUID? = nil, name: String, price: Double, categoryID: Category.IDValue) {
+    init(id: UUID? = nil, name: String, price: Double, categoryID: UUID) {
         self.id = id
         self.name = name
         self.price = price

@@ -1,5 +1,6 @@
 import Fluent
 import Vapor
+import Redis
 
 struct ProductController: RouteCollection {
     func boot(routes: any RoutesBuilder) throws {
@@ -38,9 +39,28 @@ struct ProductController: RouteCollection {
 
     // GET /products
     func index(req: Request) async throws -> View {
+        let key = RedisKey("all_products")
+        
+        // try redis
+        let result = try await req.redis.get(key, as: String?.self).get()
+    
+        if let maybeCachedString = result, let cachedString = maybeCachedString {
+            if let data = cachedString.data(using: .utf8) {
+                let cachedProducts = try JSONDecoder().decode([Product].self, from: data)
+                return try await req.view.render("products/index", IndexContext(title: ". s t o r e", products: cachedProducts))
+            }
+        }
+        
+        // no cache - query db
         let products = try await Product.query(on: req.db).with(\.$category).all()
-        let context = IndexContext(title: ". s t o r e", products: products)
-        return try await req.view.render("products/index", context)
+        
+        let data = try JSONEncoder().encode(products)
+        if let jsonString = String(data: data, encoding: .utf8) {
+            _ = try await req.redis.set(key, to: jsonString).get()
+            _ = try await req.redis.expire(key, after: .seconds(30)).get()
+        }
+        
+        return try await req.view.render("products/index", IndexContext(title: ". s t o r e", products: products))
     }
 
     // GET /products/create
@@ -55,6 +75,7 @@ struct ProductController: RouteCollection {
         let input = try req.content.decode(ProductFormInput.self)
         let product = Product(name: input.name, price: input.price, categoryID: input.category_id)
         try await product.save(on: req.db)
+        _ = try await req.redis.delete(RedisKey("all_products")).get()
         return req.redirect(to: "/products")
     }
 
@@ -78,6 +99,7 @@ struct ProductController: RouteCollection {
         product.price = input.price
         product.$category.id = input.category_id
         try await product.save(on: req.db)
+        _ = try await req.redis.delete(RedisKey("all_products")).get()
         return req.redirect(to: "/products")
     }
 
@@ -87,6 +109,7 @@ struct ProductController: RouteCollection {
             throw Abort(.notFound)
         }
         try await product.delete(on: req.db)
+        _ = try await req.redis.delete(RedisKey("all_products")).get()
         return req.redirect(to: "/products")
     }
 }
