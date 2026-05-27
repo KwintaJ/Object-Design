@@ -19,12 +19,14 @@
 <body>
     <h1>#(title)</h1>
     <a href="/products/create" class="btn">＋ Dodaj nowy produkt</a>
+    <a href="/categories" class="btn">Zarządzaj kategoriami</a>
 
     <table>
         <thead>
             <tr>
                 <th>Produkt</th>
                 <th>Cena</th>
+                <th>Kategoria</th>
                 <th>Akcje</th>
             </tr>
         </thead>
@@ -33,6 +35,7 @@
             <tr>
                 <td>#(product.name)</td>
                 <td>#(product.price) PLN</td>
+                <td>#(product.category.name)</td>
                 <td>
                     <a href="/products/#(product.id)/edit" class="btn btn-edit">Edytuj</a>
                     <form action="/products/#(product.id)/delete" method="POST">

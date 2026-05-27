@@ -15,25 +15,15 @@
 </head>
 <body>
     <h1>#(title)</h1>
-    <form action="/products" method="POST">
-        <div class="form-group">
-            <label>Nazwa produktu:</label>
-            <input type="text" name="name" placeholder="nazwa" required>
+    <h1>Dodaj nową kategorię</h1>
+    <form action="/categories" method="POST">
+        <div>
+            <label>Nazwa kategorii:</label><br>
+            <input type="text" name="name" required>
         </div>
-        <div class="form-group">
-            <label>Cena (PLN):</label>
-            <input type="number" step="0.01" name="price" placeholder="0.00" required>
-        </div>
-        <div class="form-group">
-            <label>Kategoria:</label>
-            <select name="category_id">
-                #for(category in categories):
-                <option value="#(category.id)">#(category.name)</option>
-                #endfor
-            </select>
-        </div>
-        <button type="submit">Zapisz w magazynie</button>
-        <a href="/products">Anuluj</a>
+        <br>
+        <button type="submit">Zapisz</button>
+        <a href="/categories">Anuluj</a>
     </form>
 </body>
 </html>

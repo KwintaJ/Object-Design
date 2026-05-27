@@ -14,31 +14,46 @@ struct ProductController: RouteCollection {
         products.post(":productID", "delete", use: delete)
     }
 
+    struct ProductFormInput: Decodable {
+        let name: String
+        let price: Double
+        let category_id: UUID
+    }
+
     struct IndexContext: Encodable {
         let title: String
         let products: [Product]
     }
 
+    struct CreateContext: Encodable {
+        let title: String
+        let categories: [Category]
+    }
+
     struct EditContext: Encodable {
         let title: String
         let product: Product
+        let categories: [Category]
     }
 
     // GET /products
     func index(req: Request) async throws -> View {
-        let products = try await Product.query(on: req.db).all()
+        let products = try await Product.query(on: req.db).with(\.$category).all()
         let context = IndexContext(title: ". s t o r e", products: products)
         return try await req.view.render("products/index", context)
     }
 
     // GET /products/create
     func createView(req: Request) async throws -> View {
-        return try await req.view.render("products/create", ["title": "Dodaj nowy produkt"])
+        let categories = try await Category.query(on: req.db).all()
+        let context = CreateContext(title: "Dodaj nowy produkt", categories: categories)
+        return try await req.view.render("products/create", context)
     }
 
     // POST /products
     func create(req: Request) async throws -> Response {
-        let product = try req.content.decode(Product.self)
+        let input = try req.content.decode(ProductFormInput.self)
+        let product = Product(name: input.name, price: input.price, categoryID: input.category_id)
         try await product.save(on: req.db)
         return req.redirect(to: "/products")
     }
@@ -48,18 +63,20 @@ struct ProductController: RouteCollection {
         guard let product = try await Product.find(req.parameters.get("productID"), on: req.db) else {
             throw Abort(.notFound)
         }
-        let context = EditContext(title: "Edycja Produktu", product: product)
+        let categories = try await Category.query(on: req.db).all()
+        let context = EditContext(title: "Edycja Produktu", product: product, categories: categories)
         return try await req.view.render("products/edit", context)
     }
 
     // POST /products/:productID/edit
     func update(req: Request) async throws -> Response {
-        let updatedData = try req.content.decode(Product.self)
+        let input = try req.content.decode(ProductFormInput.self)
         guard let product = try await Product.find(req.parameters.get("productID"), on: req.db) else {
             throw Abort(.notFound)
         }
-        product.name = updatedData.name
-        product.price = updatedData.price
+        product.name = input.name
+        product.price = input.price
+        product.$category.id = input.category_id
         try await product.save(on: req.db)
         return req.redirect(to: "/products")
     }
