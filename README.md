@@ -69,3 +69,13 @@ Prosta aplikacja w Vaporze, wykorzystująca Leaf jako silnik szablonów i Fluent
 ✗ | **4.0** Drugi model oraz kontroler Kategorii wraz z relacją  
 ✗ | **4.5** Redis do przechowywania danych  
 ✗ | **5.0** Aplikacja na heroku  
+
+## Zadanie  8 | Testy  
+
+Testowanie Kotlin, Python, Java, JS, Go, Scala w Selenium/Webdriver i Playwright  
+
+✗ | **3.0** Testowanie formularza rejestracji użytkownika pod kątem walidacji pól obowiązkowych oraz zachowania aplikacji po wprowadzeniu niepoprawnego formatu adresu e-mail  
+✗ | **3.5** Testowanie bezpieczeństwa typu Cross-Site Scripting (XSS), próbując wstrzyknąć złośliwy kod JavaScript w aplikacji z Reactem  
+✗ | **4.0** Testowanie działania koszyka zakupowego przy jednoczesnym otwarciu aplikacji w kilku osobnych kartach tej samej przeglądarki, sprawdzając spójność stanów zamówienia (aplikacja z zadania z React'em)  
+✗ | **4.5** Do zadania z React'a dodanie formularz logowania. Następnie przetestowanie podatności na ataki typu Cross-Site Request Forgery (CSRF), próbując wymusić nieautoryzowaną zmianę ustawień konta spreparowanym linkiem, podczas gdy użytkownik posiada aktywną sesję w innej karcie.  
+✗ | **5.0** Stworzenie scenariusz End-to-End w Playwright (minimum 50 asercji)  
