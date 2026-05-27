@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>#(title)</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background-color: #121212; color: #e0e0e0; }
+        h1 { color: #ff4757; }
+        table { width: 100%; max-width: 800px; border-collapse: collapse; margin-top: 20px; background: #1e1e1e; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #333; }
+        th { background-color: #2f3542; color: #ff4757; text-transform: uppercase; font-size: 14px; }
+        tr:hover { background-color: #252525; }
+        .btn { display: inline-block; padding: 6px 12px; text-decoration: none; color: white; background: #ff4757; border-radius: 4px; font-weight: bold; font-size: 14px; }
+        .btn-edit { background: #2ed573; margin-right: 5px; }
+        .btn-danger { background: #ff6b6b; border: none; cursor: pointer; padding: 6px 12px; border-radius: 4px; color: white; font-weight: bold; font-size: 14px; }
+        form { display: inline; }
+    </style>
+</head>
+<body>
+    <h1>#(title)</h1>
+    <a href="/products/create" class="btn">＋ Dodaj nowy produkt</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Produkt</th>
+                <th>Cena</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            #for(product in products):
+            <tr>
+                <td>#(product.name)</td>
+                <td>#(product.price) PLN</td>
+                <td>
+                    <a href="/products/#(product.id)/edit" class="btn btn-edit">Edytuj</a>
+                    <form action="/products/#(product.id)/delete" method="POST">
+                        <button type="submit" class="btn-danger">Usuń</button>
+                    </form>
+                </td>
+            </tr>
+            #endfor
+        </tbody>
+    </table>
+</body>
+</html>
