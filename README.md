@@ -79,3 +79,11 @@ Testowanie Kotlin, Python, Java, JS, Go, Scala w Selenium/Webdriver i Playwright
 ✗ | **4.0** Testowanie działania koszyka zakupowego przy jednoczesnym otwarciu aplikacji w kilku osobnych kartach tej samej przeglądarki, sprawdzając spójność stanów zamówienia (aplikacja z zadania z React'em)  
 ✗ | **4.5** Do zadania z React'a dodanie formularz logowania. Następnie przetestowanie podatności na ataki typu Cross-Site Request Forgery (CSRF), próbując wymusić nieautoryzowaną zmianę ustawień konta spreparowanym linkiem, podczas gdy użytkownik posiada aktywną sesję w innej karcie.  
 ✗ | **5.0** Stworzenie scenariusz End-to-End w Playwright (minimum 50 asercji)  
+
+## Zadanie 9 | Cloud  
+
+✗ | **3.0** Należy stworzyć odpowiednie instancje po stronie chmury na dockerze  
+✗ | **3.5** Stworzyć odpowiedni pipeline w Github Actions do budowania aplikacji  
+✗ | **4.0** Dodać notyfikację mailową o zbudowaniu aplikacji  
+✗ | **4.5** Dodać krok z deploymentem aplikacji serwerowej oraz klienckiej na chmurę  
+✗ | **5.0** Dodać uruchomienie regresyjnych testów automatycznych (funkcjonalnych) jako krok w Actions  
