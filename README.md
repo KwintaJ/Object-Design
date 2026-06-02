@@ -74,7 +74,7 @@ Prosta aplikacja w Vaporze, wykorzystująca Leaf jako silnik szablonów i Fluent
 
 Testowanie Kotlin, Python, Java, JS, Go, Scala w Selenium/Webdriver i Playwright  
 
-✗ | **3.0** Testowanie formularza rejestracji użytkownika pod kątem walidacji pól obowiązkowych oraz zachowania aplikacji po wprowadzeniu niepoprawnego formatu adresu e-mail  
+✓ | **3.0** Testowanie formularza rejestracji użytkownika pod kątem walidacji pól obowiązkowych oraz zachowania aplikacji po wprowadzeniu niepoprawnego formatu adresu e-mail | [Commit](https://github.com/KwintaJ/Object-Design/commit/e6b8e965d292b2e7f898270207854651c6095740) | [Screen recording](https://github.com/KwintaJ/Object-Design/blob/main/Zadanie-8/Screen-rec-3_0.mov)  
 ✗ | **3.5** Testowanie bezpieczeństwa typu Cross-Site Scripting (XSS), próbując wstrzyknąć złośliwy kod JavaScript w aplikacji z Reactem  
 ✗ | **4.0** Testowanie działania koszyka zakupowego przy jednoczesnym otwarciu aplikacji w kilku osobnych kartach tej samej przeglądarki, sprawdzając spójność stanów zamówienia (aplikacja z zadania z React'em)  
 ✗ | **4.5** Do zadania z React'a dodanie formularz logowania. Następnie przetestowanie podatności na ataki typu Cross-Site Request Forgery (CSRF), próbując wymusić nieautoryzowaną zmianę ustawień konta spreparowanym linkiem, podczas gdy użytkownik posiada aktywną sesję w innej karcie.  
