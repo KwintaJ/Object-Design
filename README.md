@@ -82,7 +82,7 @@ Testowanie Kotlin, Python, Java, JS, Go, Scala w Selenium/Webdriver i Playwright
 
 ## Zadanie 9 | Cloud  
 
-✓ | **3.0** Należy stworzyć odpowiednie instancje po stronie chmury na dockerze | [Commit](https://github.com/KwintaJ/Object-Design/commit/ca8c528c99417a93b52c05a67776806fda5213fa) | [Google Cloud Instance](http://35.232.194.226:8080)  
+✓ | **3.0** Należy stworzyć odpowiednie instancje po stronie chmury na dockerze | [Commit](https://github.com/KwintaJ/Object-Design/commit/ca8c528c99417a93b52c05a67776806fda5213fa) | [Google Cloud Instance](http://35.232.194.226:8080) | [Screen recording](https://github.com/KwintaJ/Object-Design/blob/main/Zadanie-9/Screen%20Recording.mov)  
 ✗ | **3.5** Stworzyć odpowiedni pipeline w Github Actions do budowania aplikacji  
 ✗ | **4.0** Dodać notyfikację mailową o zbudowaniu aplikacji  
 ✗ | **4.5** Dodać krok z deploymentem aplikacji serwerowej oraz klienckiej na chmurę  
